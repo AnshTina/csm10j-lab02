@@ -1,0 +1,98 @@
+import java.io.IOException;
+import java.io.File;
+import java.util.Scanner;
+import java.io.FileReader;
+import java.io.PrintWriter;
+
+public class Ch3_PrExercise1 {
+    public static void main (String[] args) throws IOException {
+        File text = new File("/Users/Ansh/JavaAssignments/inData.txt");
+        File file = new File("/Users/Ansh/JavaAssignments/outData.dat");
+        File fileOut = new File("/Users/Ansh/JavaAssignments/outData.txt");
+        double pi = 3.14;
+        Scanner inFile = new Scanner(new FileReader(text));
+        PrintWriter outFile_dat = new PrintWriter(file);
+        PrintWriter outFile_txt = new PrintWriter(fileOut);
+        int counter = 0;
+        //read line by line
+        while(inFile.hasNextLine()){
+      
+            counter++;
+ //        String line = inFile.nextLine();
+           
+            String stringRead = inFile.nextLine();
+            outFile_dat.println(stringRead);     
+ //         System.out.println(stringRead); 
+            String [] words = stringRead.split("\\s+");
+ //           System.out.println(words[0]);
+ 
+ //Write statements so that after the program executes the contents of the file outData.txt are as shown below.
+ // This will overwrite the contents of outData.txt
+            
+            if (counter == 1)
+            {
+             //   System.out.println("Rectangle:");
+                double length = Double.parseDouble(words[0]);
+                double width = Double.parseDouble(words[1]);
+             //   System.out.println ("Length= " + length + ", width = " + width + ", area = " + length*width + ", parameter= " + 2*(length+width) );
+             //   System.out.println(" ");
+                String rect_str = "Length= " + length + ", width = " + width + ", area = " + length*width + ", parameter= " + 2*(length+width);
+                outFile_txt.println("Rectangle:");
+                outFile_txt.println(rect_str);
+                outFile_txt.println();
+            
+            }
+            else if (counter == 2)
+                    {
+                      //System.out.println("Circle:");
+                      double radius = Double.parseDouble(words[0]);
+                      double area = pi*radius*radius;   
+                      double circumference = 2*pi*radius;
+                      //System.out.println("Radius = " + radius + ", area = "+ area + ", circumference = " + circumference);
+                      //System.out.println(" ");
+                      String circ_str = "Radius = " + radius + ", area = "+ area + ", circumference = " + circumference;
+                      outFile_txt.println("Circle:");
+                      outFile_txt.println(circ_str);
+                      outFile_txt.println();
+                    }
+            
+            else if (counter == 3)
+            {
+                /*System.out.println("Name: " + words[0] + " " + words[1] + "," + " age: "
+                        + words[2]);
+            */
+                String name = "Name: " + words[0] + " " + words[1] + "," + " age: "
+                        + words[2];
+                outFile_txt.println(name);
+          
+            }
+            else if (counter == 4)
+            {
+            Double beginningBalance = Double.parseDouble(words[0]); 
+            Double interestRate = Double.parseDouble(words[1]);
+            Double annualRate = (interestRate/100)*beginningBalance;
+            Double monthlyRate = annualRate/12;
+            Double endBalance = beginningBalance+monthlyRate;
+            /*System.out.println("Beginning balance= " + beginningBalance + "0, "
+            + "interest rate = " + interestRate + "0");
+            System.out.println ("Balance at the end of the month = "
+            + endBalance
+            );
+            System.out.println(" "); */
+            outFile_txt.println("Beginning balance= " + beginningBalance + "0, "
+            + "interest rate = " + interestRate + "0");
+            outFile_txt.println("Balance at the end of the month = "
+            + endBalance);
+            outFile_txt.println();
+}
+            else if (counter == 5)
+            {
+            //System.out.println("The character that comes after " + words[0] + " in the ASCII set is " + ((char)66));
+            outFile_txt.println("The character that comes after " + words[0] + " in the ASCII set is " + ((char)66));
+            } 
+       }
+        outFile_dat.close();
+        outFile_txt.close();
+   }
+}
+                 
